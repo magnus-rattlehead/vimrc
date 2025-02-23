@@ -112,7 +112,8 @@ syntax enable
 set regexpengine=0
 
 try
-    colorscheme default
+    set termguicolors
+    colorscheme tachyon
 catch
 endtry
 
@@ -269,7 +270,8 @@ if has("autocmd")
 endif
 
 " Map jk to <ESC>
-noremap jk <ESC>
+inoremap jk <ESC>
+vnoremap jk <ESC>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
