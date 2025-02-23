@@ -8,6 +8,8 @@ set history=500
 filetype plugin on
 filetype indent on
 
+runtime macros/matchit.vim
+
 " Set to auto read when a file is changed from the outside
 set autoread
 au FocusGained,BufEnter * silent! checktime
@@ -198,7 +200,7 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>tj :tabnext<cr>
-map <leader>tk :tabnext<cr>
+map <leader>tk :tabprev<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -267,7 +269,7 @@ if has("autocmd")
 endif
 
 " Map jk to <ESC>
-inoremap jk <ESC>
+noremap jk <ESC>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
