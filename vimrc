@@ -111,12 +111,6 @@ syntax enable
 " Set regular expression engine automatically
 set regexpengine=0
 
-try
-    set termguicolors
-    colorscheme tachyon
-catch
-endtry
-
 set background=dark
 
 " Set extra options when running in GUI mode
@@ -128,7 +122,7 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -139,6 +133,7 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
+set nowritebackup
 set nowb
 set noswapfile
 
@@ -298,6 +293,12 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin()
+Plug 'neoclide/coc.nvim'
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
