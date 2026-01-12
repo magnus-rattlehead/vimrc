@@ -321,6 +321,8 @@ map <leader>P :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'neoclide/coc.nvim'
+Plug 'vim-test/vim-test'
+Plug 'Raimondi/delimitMate'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
