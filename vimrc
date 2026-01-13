@@ -177,12 +177,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
@@ -197,8 +191,8 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>tj :tabnext<cr>
-map <leader>tk :tabprev<cr>
+map <C-j> :tabnext<cr>
+map <C-k> :tabprev<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -224,10 +218,11 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Toggle file explorer
-nmap <leader>d :Lexplore<cr>
+nmap <leader>i :Lexplore<cr>
 
 " Set Netrw to open files in new tab by default
 let g:netrw_browse_split = 3
+
 """""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -327,6 +322,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim' "Code completion
 Plug 'vim-test/vim-test' "Unit Test Runner
 Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
