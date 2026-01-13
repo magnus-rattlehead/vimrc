@@ -149,9 +149,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -249,7 +249,8 @@ set statusline+=%2*\ %y\                                  "FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
 set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%5*\ %{&spelllang}\ %{HasPaste()}\         "Spellanguage , Paste mode?
+set statusline+=%5*\ %{&spelllang}\ %{HasPaste()}\        "Spellanguage , Paste mode?
+set statusline+=%8*\ %{NearestMethodOrFunction()}\        "Display Nearest Method or Function via Vista.vim
 set statusline+=%8*\ %=\ row:%l/%L\                       "Rownumber/total
 set statusline+=%9*\ col:%03c\                            "Colnr
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
@@ -323,6 +324,7 @@ Plug 'neoclide/coc.nvim' "Code completion
 Plug 'vim-test/vim-test' "Unit Test Runner
 Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
+Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -377,3 +379,9 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
