@@ -223,8 +223,12 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" Toggle file explorer
+nmap <leader>d :Lexplore<cr>
 
-""""""""""""""""""""""""""""""
+" Set Netrw to open files in new tab by default
+let g:netrw_browse_split = 3
+"""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 
@@ -308,7 +312,7 @@ map <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a markdown buffer for scribble
 map <leader>x :e ~/buffer.md<cr>
@@ -320,9 +324,9 @@ map <leader>P :setlocal paste!<cr>
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
-Plug 'neoclide/coc.nvim'
-Plug 'vim-test/vim-test'
-Plug 'Raimondi/delimitMate'
+Plug 'neoclide/coc.nvim' "Code completion
+Plug 'vim-test/vim-test' "Unit Test Runner
+Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
