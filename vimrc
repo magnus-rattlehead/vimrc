@@ -325,6 +325,7 @@ Plug 'vim-test/vim-test' "Unit Test Runner
 Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
+Plug 'github/copilot.vim' "Github pilot
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
