@@ -152,6 +152,7 @@ set smarttab
 " 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
+set softtabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -199,14 +200,6 @@ let g:lasttab = 1
 nmap <leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <C-r>=escape(expand("%:p:h"), " ")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
@@ -218,7 +211,7 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Toggle file explorer
-nmap <leader>i :Lexplore<cr>
+nmap <leader>e :Lexplore<cr>
 
 " Set Netrw to open files in new tab by default
 let g:netrw_browse_split = 3
@@ -249,7 +242,7 @@ set statusline+=%2*\ %y\                                  "FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
 set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%5*\ %{&spelllang}\ %{HasPaste()}\        "Spellanguage , Paste mode?
+set statusline+=%5*\ %{&spelllang}\                       "Spellanguage
 set statusline+=%8*\ %{NearestMethodOrFunction()}\        "Display Nearest Method or Function via Vista.vim
 set statusline+=%8*\ %=\ row:%l/%L\                       "Rownumber/total
 set statusline+=%9*\ col:%03c\                            "Colnr
@@ -297,13 +290,6 @@ vnoremap jk <ESC>
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -326,19 +312,12 @@ Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
 Plug 'github/copilot.vim' "Github pilot
+Plug 'ap/vim-buftabline' "Buffer line at the top
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return ' PASTE MODE '
-    endif
-    return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
