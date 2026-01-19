@@ -31,13 +31,11 @@ nmap <leader>Q :q!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
-
 
 " Turn on the Wild menu
 set wildmenu
@@ -98,12 +96,12 @@ if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
 
-" Add a bit extra margin to the left
-set foldcolumn=1
-
 " Enable 24-bit color support
-
 set termguicolors
+
+" Enable relative line numbers
+set relativenumber
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,7 +127,6 @@ set encoding=utf-8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -138,7 +135,6 @@ set nobackup
 set nowritebackup
 set nowb
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -162,7 +158,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
@@ -184,8 +179,8 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+nnoremap <C-N> :bnext<cr>
+nnoremap <C-M> :bprev<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -213,10 +208,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Toggle file explorer
 nmap <leader>e :Lexplore<cr>
 
-" Set Netrw to open files in new tab by default
-let g:netrw_browse_split = 3
-
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 
@@ -224,7 +216,6 @@ let g:netrw_browse_split = 3
 set laststatus=2
 
 " Status line colors
-
 hi User1 guifg=#ffdad8  guibg=#880c0e
 hi User2 guifg=#000000  guibg=#F4905C
 hi User3 guifg=#292b00  guibg=#f4f597
@@ -234,19 +225,6 @@ hi User7 guifg=#ffffff  guibg=#880c0e gui=bold
 hi User8 guifg=#ffffff  guibg=#5b7fbb
 hi User9 guifg=#ffffff  guibg=#810085
 hi User0 guifg=#ffffff  guibg=#094afe
-
-" Format the status line
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%5*\ %{&spelllang}\                       "Spellanguage
-set statusline+=%8*\ %{NearestMethodOrFunction()}\        "Display Nearest Method or Function via Vista.vim
-set statusline+=%8*\ %=\ row:%l/%L\                       "Rownumber/total
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -312,7 +290,9 @@ Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
 Plug 'github/copilot.vim' "Github pilot
-Plug 'ap/vim-buftabline' "Buffer line at the top
+Plug 'vim-airline/vim-airline' "Status line
+Plug 'vim-airline/vim-airline-themes' "Status line themes
+Plug 'tpope/vim-fugitive' "Git integration
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -360,8 +340,3 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
