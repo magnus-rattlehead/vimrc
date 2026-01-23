@@ -159,7 +159,7 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Close the current buffer
-map <leader>bd :bd<cr>:tabclose<cr>gT
+map <leader>bd :bd<cr>
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
@@ -258,4 +258,5 @@ Plug 'Vimjas/vim-python-pep8-indent' "PEP8 Indentation for Python
 Plug 'junegunn/limelight.vim' "Highlight current paragraph
 Plug 'morhetz/gruvbox' "Gruvbox color scheme
 Plug 'preservim/vim-indent-guides' "Indent guides
+Plug 'pasky/claude.vim' "AI assistant
 call plug#end()
