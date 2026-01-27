@@ -27,6 +27,12 @@ nmap <leader>q :wq<cr>
 " Fast quit without saving
 nmap <leader>Q :q!<cr>
 
+" Confirm before exiting unsaved files
+set confirm
+
+" Set timeoutlen to 300 milliseconds
+set timeoutlen=300
+
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -36,8 +42,8 @@ set t_te=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+" Set 10 lines to the cursor - when moving vertically using j/k
+set so=10
 
 " Turn on the Wild menu
 set wildmenu
@@ -104,6 +110,10 @@ set termguicolors
 " Enable relative line numbers
 set relativenumber
 
+" Set symbols for displaying invisible characters
+set list
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,space:␣,trail:•,extends:»,precedes:«,nbsp:‡
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,6 +139,8 @@ set nobackup
 set nowritebackup
 set nowb
 set noswapfile
+" Enable persistent undo so that undo history is saved to a file
+set undofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -155,8 +167,11 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+" Disable highlight when <Esc><Esc> is pressed
+nnoremap <silent> <Esc><Esc> :noh<cr>
+
+" Exit terminal with <Esc><Esc>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " Close the current buffer
 map <leader>bd :bd<cr>
@@ -164,6 +179,7 @@ map <leader>bd :bd<cr>
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
+"Navigate between buffers using Ctrl+N and Ctrl+M
 nnoremap <C-N> :bnext<cr>
 nnoremap <C-M> :bprev<cr>
 
@@ -172,13 +188,19 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <C-j> :tabnext<cr>
-map <C-k> :tabprev<cr>
+map <C-w> :tabnext<cr>
+map <C-q> :tabprev<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
+
+" Navigate between splits using Ctrl+[hjkl]
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Specify the behavior when switching between buffers
 try
@@ -250,13 +272,19 @@ Plug 'neoclide/coc.nvim' "Code completion
 Plug 'Raimondi/delimitMate' "Auto wrap brackets and quotes
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
-Plug 'github/copilot.vim' "Github pilot
 Plug 'vim-airline/vim-airline' "Status line
 Plug 'vim-airline/vim-airline-themes' "Status line themes
 Plug 'tpope/vim-fugitive' "Git integration
-Plug 'Vimjas/vim-python-pep8-indent' "PEP8 Indentation for Python
 Plug 'junegunn/limelight.vim' "Highlight current paragraph
 Plug 'morhetz/gruvbox' "Gruvbox color scheme
 Plug 'preservim/vim-indent-guides' "Indent guides
 Plug 'pasky/claude.vim' "AI assistant
+Plug 'liuchengxu/vim-which-key' "Key binding helper
+Plug 'tpope/vim-vinegar' "Enhanced netrw
+Plug 'tpope/vim-sleuth' "Enhanced shiftwidth and tabstop
+Plug 'ryanoasis/vim-devicons' "File icons
+Plug 'matze/vim-move' "Move lines and selections up and down
+Plug 'justinmk/vim-sneak' "Enhanced navigation
+Plug 'mhinz/vim-startify' "Start screen
+Plug 'Exafunction/windsurf.vim' "Windsurf integration
 call plug#end()
