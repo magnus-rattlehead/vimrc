@@ -21,8 +21,8 @@ let mapleader = " "
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Fast save and close
-nmap <leader>q :wq<cr>
+" Fast close
+nmap <leader>q :q<cr>
 
 " Fast quit without saving
 nmap <leader>Q :q!<cr>
@@ -212,9 +212,6 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Toggle file explorer
-nmap <leader>e :Lexplore<cr>
-
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -278,13 +275,12 @@ Plug 'tpope/vim-fugitive' "Git integration
 Plug 'junegunn/limelight.vim' "Highlight current paragraph
 Plug 'morhetz/gruvbox' "Gruvbox color scheme
 Plug 'preservim/vim-indent-guides' "Indent guides
-Plug 'pasky/claude.vim' "AI assistant
 Plug 'liuchengxu/vim-which-key' "Key binding helper
-Plug 'tpope/vim-vinegar' "Enhanced netrw
 Plug 'tpope/vim-sleuth' "Enhanced shiftwidth and tabstop
 Plug 'ryanoasis/vim-devicons' "File icons
 Plug 'matze/vim-move' "Move lines and selections up and down
 Plug 'justinmk/vim-sneak' "Enhanced navigation
 Plug 'mhinz/vim-startify' "Start screen
 Plug 'Exafunction/windsurf.vim' "Windsurf integration
+Plug 'preservim/nerdtree' "File explorer
 call plug#end()
