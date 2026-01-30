@@ -283,4 +283,5 @@ Plug 'justinmk/vim-sneak' "Enhanced navigation
 Plug 'mhinz/vim-startify' "Start screen
 Plug 'Exafunction/windsurf.vim' "Windsurf integration
 Plug 'preservim/nerdtree' "File explorer
+Plug 'preservim/tagbar' "Enable tagbar integration with airline
 call plug#end()
