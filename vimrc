@@ -284,4 +284,5 @@ Plug 'mhinz/vim-startify' "Start screen
 Plug 'Exafunction/windsurf.vim' "Windsurf integration
 Plug 'preservim/nerdtree' "File explorer
 Plug 'preservim/tagbar' "Enable tagbar integration with airline
+Plug 'mao-yining/undotree.vim' "Undo Tree visualization
 call plug#end()
