@@ -1,2 +1,2 @@
-imap <script><silent><nowait><expr> <leader>n codeium#AcceptNextWord()
-imap <script><silent><nowait><expr> <leader>m codeium#AcceptNextLine()
+imap <script><silent><nowait><expr> .n codeium#AcceptNextWord()
+imap <script><silent><nowait><expr> .m codeium#AcceptNextLine()
