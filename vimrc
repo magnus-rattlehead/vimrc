@@ -271,7 +271,8 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } "Fuzzy Finder
 Plug 'liuchengxu/vista.vim' "View tags and LSP symbols
 Plug 'vim-airline/vim-airline' "Status line
 Plug 'vim-airline/vim-airline-themes' "Status line themes
-Plug 'tpope/vim-fugitive' "Git integration
+Plug 'airblade/vim-gitgutter' "Git integration
+Plug 'APZelos/blamer.nvim' "Git blame
 Plug 'junegunn/limelight.vim' "Highlight current paragraph
 Plug 'morhetz/gruvbox' "Gruvbox color scheme
 Plug 'preservim/vim-indent-guides' "Indent guides
@@ -285,4 +286,5 @@ Plug 'Exafunction/windsurf.vim' "Windsurf integration
 Plug 'preservim/nerdtree' "File explorer
 Plug 'preservim/tagbar' "Enable tagbar integration with airline
 Plug 'mao-yining/undotree.vim' "Undo Tree visualization
+Plug 'sheerun/vim-polyglot' " Better language support
 call plug#end()
